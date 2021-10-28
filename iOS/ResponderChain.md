@@ -18,7 +18,12 @@
 
 ## 어떤 리스폰더가 이벤트를 포함하고 있는지 결정하기
 
-- 
+- UIKit은 뷰 기반 hit-testing을 사용하여 터치 이벤트가 어디서 발생하였는지 결정합니다.
+- 구체적으로 UIKit은 터치 이벤트가 발생한 위치와 뷰 계층의 뷰 오브젝트의 bounds를 비교합니다.
+- UiView의 hitTest(_: with:) 메서드는 뷰 계층을 돌아다니며 이벤트가 발생한 터치 지점을 포함하고 있는 뷰의 계층 상 가장 최하단 서브뷰를 찾고, 그것을 터치 이벤트의 First Responder로 지정합니다.
+- 터치 이벤트가 발생하더라고 발생한 위치가 뷰의 bounds의 밖에 있다면 hittest(_:with:)는 해당뷰와 서브뷰 모두 무시합니다.
+- 결과적으로 clipsToBounds가 false로 설정되어 있을 때, 뷰의 bounds를 벗어난 서브뷰에서 터치가 발생하더라고 hittest(_:with:)는 뷰를 리턴하지 않습니다.
+- 추가적으로 hidden이거나 alpha값이 0.01 이하거나 user interaciton이 disabled라면 무시됩니다.
 
 ## 리스폰더 체인을 변경하기
 
