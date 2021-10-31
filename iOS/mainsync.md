@@ -7,7 +7,7 @@
 ## 왜! main.sync를 사용하면 안될까??
 
 1. Deadlock (교착상태)에 의해 사용하면 안됩니다!
-    1. Deadlock이란 두개 이상의 작업이 서로 상대방의 작업이 끝나기만을 기다로기 있기 때문에 결과적으로 아무것도 완료하지 못하는 상태.
+    1. Deadlock이란 두개 이상의 작업이 서로 상대방의 작업이 끝나기만을 기다리고 있기 때문에 결과적으로 아무것도 완료하지 못하는 상태.
     
     ```swift
     let myqueue = DispatchQueue.init(label: "label")
